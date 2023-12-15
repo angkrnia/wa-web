@@ -4,10 +4,13 @@ const { Client, LocalAuth } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
 
 const app = express();
-const port = 3000;
+const port = 5000;
 
 const client = new Client({
     authStrategy: new LocalAuth(),
+    puppeteer: {
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    },
 });
 
 client.on('disconnected', (reason) => {
